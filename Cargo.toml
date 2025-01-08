@@ -1,0 +1,7 @@
+[package]
+name = "kaisa-optimal-build"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+microlp = { git = "https://github.com/Specy/microlp", rev = "64a480e6b53bb4e92c1f188eb0d4372ea85cd9a0" }
