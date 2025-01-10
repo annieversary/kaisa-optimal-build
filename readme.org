@@ -1,0 +1,46 @@
+* kaisa-optimal-build
+small tool uses the [[https://docs.rs/microlp/latest/microlp/][microlp]] crate to find the cheapest [[https://wiki.leagueoflegends.com/en-us/Kai'Sa][Kai'sa]] build that is above the required threshold to upgrade her abilities.
+Kai'sa is a League of Legends character, who's passive ability is that she can evolve her normal abilities after she gains enough stats from items.
+for her Q, it's 100 attack damage (ad), for her W it's ability power (ap), and for her E it's attack speed.
+these requirements change by level, and this tool applies the level 1 stat requirements.
+
+** acquiring =item.json=
+run the following, changing =14.24.1= for whatever the most recent patch is:
+#+begin_src bash
+curl https://ddragon.leagueoflegends.com/cdn/14.24.1/data/en_US/item.json > item.json
+#+end_src
+this will download all item information, straight from riot's [[https://developer.riotgames.com/docs/lol#data-dragon][data dragon]]
+** running
+requires [[https://www.rust-lang.org/][rust]] and [[https://github.com/rust-lang/cargo][cargo]] installed on your machine.
+then run
+#+begin_src
+cargo run --release
+#+end_src
+
+this will run for a bit, then output something like the following
+
+#+begin_src
+Found 116 items that contribute to desired stats
+Ignorning Nashor's Tooth and Kraken Slayer
+Found solution in 189.60ms
+-----
+Best build
+Total cost: 8850
+
+count  name                     cost   ad  ap  attack speed movement speed
+5      Hearthbound Axe          1200   20  0   20           0
+1      Luden's Companion        2850   0   100 0            0
+-----
+total                           8850   20  100 20           0
+#+end_src
+** note: Nashor's Tooth and Kraken Slayer
+for some reason, there is a complexity explosion if Nashor's Tooth and Kraken Slayer are included,
+and the program seems to not terminate (longest i've let it run is around 20 minutes).
+removing only those two items makes the program finish running in under 200ms.
+
+i'm not sure why this is, but i want to investigate it further.
+there's the possibility that this is a microlp bug, but i don't think that is the case
+** note: microlp bug
+during development of this tool, i found [[https://github.com/Specy/microlp/issues/10][an issue]] in microlp, which caused all non-exact solutions to be incorrectly marked as =Infeasable=.
+this got resolved in [[https://github.com/Specy/microlp/commit/64a480e6b53bb4e92c1f188eb0d4372ea85cd9a0][64a480e]], and then released as v0.2.9.
+please ensure you use a version of microlp above that commit.
