@@ -33,14 +33,3 @@ count  name                     cost   ad  ap  attack speed movement speed
 -----
 total                           8850   20  100 20           0
 #+end_src
-** note: Nashor's Tooth and Kraken Slayer
-for some reason, there is a complexity explosion if Nashor's Tooth and Kraken Slayer are included,
-and the program seems to not terminate (longest i've let it run is around 20 minutes).
-removing only those two items makes the program finish running in under 200ms.
-
-i'm not sure why this is, but i want to investigate it further.
-there's the possibility that this is a microlp bug, but i don't think that is the case
-** note: microlp bug
-during development of this tool, i found [[https://github.com/Specy/microlp/issues/10][an issue]] in microlp, which caused all non-exact solutions to be incorrectly marked as =Infeasable=.
-this got resolved in [[https://github.com/Specy/microlp/commit/64a480e6b53bb4e92c1f188eb0d4372ea85cd9a0][64a480e]], and then released as v0.2.9.
-please ensure you use a version of microlp above that commit.

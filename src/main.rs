@@ -45,7 +45,6 @@ mod items {
             if !in_store || !purchasable || !in_rift {
                 continue;
             }
-            // TODO filter out items not buyable in the rift
 
             let stat = |name: &str| item.stats.get(name).cloned().unwrap_or(0.0);
             let percent_stat = |name: &str| (stat(name) * 100.0).floor() as u16;
@@ -61,7 +60,7 @@ mod items {
 
             let cost = item.gold.total as u16;
 
-            // max bc of item slots
+            // max bc of item slots (ignoring group restrictions)
             let max = 5 + item.stacks.unwrap_or(1);
             // check the list of groups to see if it contains this item
             let group = items.find_group_for_item(id, item);
@@ -69,6 +68,7 @@ mod items {
                 .and_then(|group| group.max_group_ownable.parse().ok())
                 // -1 is nothing
                 .and_then(|limit| if limit == -1 { None } else { Some(limit) })
+                // if there is no group, or the limit is -1, use the default max
                 .unwrap_or(max) as u16;
 
             result.push(Item {
