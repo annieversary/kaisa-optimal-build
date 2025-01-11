@@ -21,15 +21,16 @@ this will run for a bit, then output something like the following
 
 #+begin_src
 Found 116 items that contribute to desired stats
-Ignorning Nashor's Tooth and Kraken Slayer
-Found solution in 189.60ms
+Found solution in 8.57ms
 -----
 Best build
-Total cost: 8850
+Total cost: 8300
 
 count  name                     cost   ad  ap  attack speed movement speed
-5      Hearthbound Axe          1200   20  0   20           0
-1      Luden's Companion        2850   0   100 0            0
+1      B. F. Sword              1300   40  0   0            0
+1      Amplifying Tome          400    0   20  0            0
+3      Hearthbound Axe          1200   20  0   20           0
+1      Nashor's Tooth           3000   0   80  50           0
 -----
-total                           8850   20  100 20           0
+total                           8300   60  100 70           0
 #+end_src
