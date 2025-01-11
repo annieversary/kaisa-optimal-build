@@ -6,7 +6,6 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0.95"
 good_lp = { version = "1.11.0", features = ["scip", "scip_bundled"],  default-features = false }
-microlp = { path = "../../trash/microlp" }
 serde = "1.0.217"
 serde_derive = "1.0.217"
 serde_json = "1.0.135"
