@@ -1,5 +1,5 @@
 * kaisa-optimal-build
-small tool uses the [[https://docs.rs/microlp/latest/microlp/][microlp]] crate to find the cheapest [[https://wiki.leagueoflegends.com/en-us/Kai'Sa][Kai'sa]] build that is above the required threshold to upgrade her abilities.
+small tool uses the [[https://docs.rs/crate/good_lp/latest][good_lp]] crate to find the cheapest [[https://wiki.leagueoflegends.com/en-us/Kai'Sa][Kai'sa]] build that is above the required threshold to upgrade her abilities.
 Kai'sa is a League of Legends character, who's passive ability is that she can evolve her normal abilities after she gains enough stats from items.
 for her Q, it's 100 attack damage (ad), for her W it's ability power (ap), and for her E it's attack speed.
 these requirements change by level, and this tool applies the level 1 stat requirements.
