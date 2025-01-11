@@ -90,23 +90,33 @@ mod items {
 }
 
 fn main() {
+    let mut i = 0;
+
     let items = parse_item_json(Path::new("./item.json")).unwrap();
-    let mut items = ddragon_to_items(&items);
+    let items = ddragon_to_items(&items)
+        .into_iter()
+        .filter(|item| {
+            i += 1;
+
+            let items = [
+                "Blasting Wand",
+                "B. F. Sword",
+                "Needlessly Large Rod",
+                "Phantom Dancer",
+                "Hearthbound Axe",
+                "Experimental Hexplate",
+                "Nashor's Tooth",
+                "Kraken Slayer",
+            ];
+
+            items.contains(&item.name.as_str()) || (0..40).contains(&i)
+        })
+        .collect::<Vec<_>>();
 
     println!(
         "Found {} items that contribute to desired stats",
         items.len()
     );
-
-    // TODO find the items by name and not by id
-
-    // nashor's tooth makes this slow as fuck
-    items.remove(51);
-
-    // Kraken Slayer
-    items.remove(102);
-
-    println!("Ignorning Nashor's Tooth and Kraken Slayer");
 
     microlp(&items);
 }
